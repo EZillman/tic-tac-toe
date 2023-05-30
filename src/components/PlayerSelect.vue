@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
-import { IPlayerData } from '../models/IPlayerData';
+import { reactive, ref } from "vue";
+import { IPlayerData } from "../models/IPlayerData";
 
-const playerData = ref<IPlayerData>({playerName: ""})
+const playerData = ref<IPlayerData>({playerType: "", playerName: ""})
 
-const state = reactive({ player:'Player X'})
+const state = reactive({ player:"Player X"})
 
 const saveName = () => {
-    state.player = 'Player O:'
+    state.player = "Player O:"
 
-    //save from input
+    // save playerType to localstorage
 }
 
 const handleSubmit = () => {
     console.log(playerData.value.playerName);
-    localStorage.setItem('playerName', playerData.value.playerName)
+    localStorage.setItem("playerName", playerData.value.playerName)
 }
 
 </script>
