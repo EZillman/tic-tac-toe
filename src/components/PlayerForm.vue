@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineEmits } from "vue";
+import { computed, defineEmits } from "vue";
 import { reactive, ref } from "vue";
 import { IPlayerData } from "../models/IPlayerData";
 
@@ -33,16 +33,20 @@ const handleSubmit = () => {
     
 };
 
+const playerNamesSaved = computed(() => {
+    return state.playerX !== "" && state.playerO !== "";
+});
+
 </script>
 
 <template>
     <div>
-        <h2>Player {{ state.currentPlayer }}</h2>
-        <form @submit.prevent="handleSubmit">
+        <h2 v-if="!playerNamesSaved">Player {{ state.currentPlayer }}</h2>
+        <form @submit.prevent="handleSubmit" v-if="!playerNamesSaved">
             <input type="text" v-model="playerData.playerName">
             <button>Save</button>
-            <button>Play</button>
         </form>
+         <button v-if="playerNamesSaved">Play</button>
 
     </div>
 
