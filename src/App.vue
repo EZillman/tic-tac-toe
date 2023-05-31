@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PlayerSelect from './components/PlayerSelect.vue';
+import PlayerSelect from "./components/PlayerForm.vue";
 
 
 </script>
