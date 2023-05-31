@@ -46,7 +46,7 @@ const playerNamesSaved = computed(() => {
             <input type="text" v-model="playerData.playerName">
             <button>Save</button>
         </form>
-         <button v-if="playerNamesSaved">Play</button>
+         <RouterLink to="/game"><button v-if="playerNamesSaved">Play</button></RouterLink>
 
     </div>
 
