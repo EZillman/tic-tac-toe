@@ -2,10 +2,16 @@
 import { ref } from "vue";
 
 const squares = ref(Array(9).fill(''));
+let currentPlayer = "X";
+
+const emits = defineEmits(["updateCurrentPlayer"]);
 
 const handleSelectedSquare = (index: any) => {
     if (squares.value[index] === "") {
-        squares.value[index] = "X";
+        squares.value[index] = currentPlayer;
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+
+        emits("updateCurrentPlayer", currentPlayer);
     }
 };
 
@@ -31,17 +37,18 @@ const handleSelectedSquare = (index: any) => {
 .gameArea {
     display: flex;
     flex-wrap: wrap;
-    width: 15rem;
-    height: 15rem;
-    background-color: #bcbcbc;
+    width: 30rem;
+    height: 30rem;
+    background-color: #585858;
 }
 
 .square {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 5rem;
-    height: 5rem;
+    margin: 0.1rem;
+    width: 9.8rem;
+    height: 9.8rem;
     font-size: 2rem;
     cursor: pointer;
     background-color: #1b1b1b;

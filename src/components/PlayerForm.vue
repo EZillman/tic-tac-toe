@@ -3,9 +3,6 @@ import { computed } from "vue";
 import { reactive, ref } from "vue";
 import { IPlayerData } from "../models/IPlayerData";
 
-
-const emits = defineEmits(["updatePlayer"]);
-
 const playerData = ref<IPlayerData>({playerName: ""});
 
 const state = reactive({
@@ -14,6 +11,7 @@ const state = reactive({
     currentPlayer: "X",
 });
 
+const emits = defineEmits(["updatePlayer"]);
 
 const handleSubmit = () => {
     if (playerData.value.playerName === "") {
