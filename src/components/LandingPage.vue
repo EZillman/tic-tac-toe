@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { IPlayerData } from "../models/IPlayerData";
 import PlayerSelect from "./PlayerForm.vue";
 
 

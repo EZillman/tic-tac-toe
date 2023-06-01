@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineEmits } from "vue";
+import { computed } from "vue";
 import { reactive, ref } from "vue";
 import { IPlayerData } from "../models/IPlayerData";
 
@@ -41,12 +41,13 @@ const playerNamesSaved = computed(() => {
 
 <template>
     <div>
+        
         <h2 v-if="!playerNamesSaved">Player {{ state.currentPlayer }}</h2>
         <form @submit.prevent="handleSubmit" v-if="!playerNamesSaved">
             <input type="text" v-model="playerData.playerName">
             <button>Save</button>
         </form>
-         <RouterLink to="/game"><button v-if="playerNamesSaved">Play</button></RouterLink>
+        <RouterLink to="/game"><button v-if="playerNamesSaved">Play</button></RouterLink>
 
     </div>
 
