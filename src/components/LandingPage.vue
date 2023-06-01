@@ -33,7 +33,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <h2>Landing page</h2>
+    <h2>Home</h2>
 
     <PlayerSelect :state="state" @updatePlayer="saveName"></PlayerSelect>
   
