@@ -4,6 +4,7 @@ import { ref } from "vue";
 const squares = ref(Array(9).fill(""));
 let currentPlayer = "X";
 const winner = ref("");
+let isTie = false;
 
 const winningPatterns = [
   [0, 1, 2], [3, 4, 5], [6, 7, 8], 
@@ -15,13 +16,14 @@ const winningPatterns = [
 const emits = defineEmits(["updateCurrentPlayer"]);
 
 const handleSelectedSquare = (index: any) => {
-    if (squares.value[index] === "") {
+    if (!winner.value && !isTie && squares.value[index] === "") {
         squares.value[index] = currentPlayer;
         currentPlayer = currentPlayer === "X" ? "O" : "X";
 
         emits("updateCurrentPlayer", currentPlayer);
 
         checkForWin();
+        checkForTie();
     }
 };
 
@@ -40,6 +42,14 @@ const checkForWin = () => {
   }
 };
 
+const checkForTie = () => {
+  if (squares.value.filter((square) => square === "").length === 0 && !winner.value) {
+    isTie = true;
+    console.log("a tie");
+    
+  }
+};
+
 </script>
 
 <template>
@@ -48,7 +58,8 @@ const checkForWin = () => {
             class="square"
             v-for="(value, index) in squares"
             :key="index"
-            @click="handleSelectedSquare(index)" >
+            @click="handleSelectedSquare(index)"
+            :class="{ disabled: winner || isTie || squares[index] !== '' }" >
             {{ value }}
         </div>
     </div>
@@ -76,6 +87,11 @@ const checkForWin = () => {
     font-size: 2rem;
     cursor: pointer;
     background-color: #1b1b1b;
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: #371a3a;
 }
 
 </style>
