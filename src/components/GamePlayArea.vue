@@ -3,8 +3,8 @@ import { ref } from "vue";
 import NewGame from "./NewGame.vue";
 
 const squares = ref(Array(9).fill(""));
-let currentPlayer = "X";
 const winner = ref("");
+let currentPlayer = "X";
 let isTie = false;
 
 const winningPatterns = [
@@ -37,7 +37,6 @@ const checkForWin = () => {
       squares.value[squareB] === squares.value[squareC]
     ) {
       winner.value = squares.value[squareA]; 
-      console.log("a win");
       return;
     }
   }
@@ -46,11 +45,9 @@ const checkForWin = () => {
 const checkForTie = () => {
   if (squares.value.filter((square) => square === "").length === 0 && !winner.value) {
     isTie = true;
-    console.log("a tie");
     
   }
 };
-
 
 const resetGame = () => {
     squares.value = Array(9).fill("");
@@ -58,9 +55,16 @@ const resetGame = () => {
     isTie = false;
 };
 
+
 </script>
 
 <template>
+
+    <div v-if="winner || isTie" class="result">
+      <p v-if="winner">{{ winner }} wins!</p>
+      <p v-if="isTie">It's a tie!</p>
+    </div>
+
     <div class="gameArea">
         <div
             class="square"
@@ -72,8 +76,8 @@ const resetGame = () => {
         </div>
     </div>
 
-    <NewGame v-if="winner || isTie" @startNewGame="resetGame">
-    </NewGame>
+
+    <NewGame v-if="winner || isTie" @startNewGame="resetGame"></NewGame>
 
   
 </template>
@@ -105,4 +109,16 @@ const resetGame = () => {
   background-color: #371a3a;
 }
 
+@media (max-width: 600px) {
+  .gameArea {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .square {
+    margin: 0.05rem;
+    width: 4.9rem;
+    height: 4.9rem;
+  }
+}
 </style>

@@ -53,4 +53,29 @@ const playerNamesSaved = computed(() => {
 
 <style scoped>
 
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 20rem;
+    height: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    input {
+        width: 10rem;
+        height: 1rem;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 0.3em 0.6em;
+        width: 10rem;
+    }
+}
+
 </style>
