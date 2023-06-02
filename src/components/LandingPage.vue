@@ -40,5 +40,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
+h2 {
+    font-family: "Audiowide", sans-serif;
+    font-size: 2rem;
+}
 </style>

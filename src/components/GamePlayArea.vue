@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import NewGame from "./NewGame.vue";
 
+const playerX = localStorage.getItem("playerX") ?? "";
+const playerO = localStorage.getItem("playerO") ?? "";
+
 const squares = ref(Array(9).fill(""));
 const winner = ref("");
 let currentPlayer = "X";
@@ -36,7 +39,7 @@ const checkForWin = () => {
       squares.value[squareA] === squares.value[squareB] &&
       squares.value[squareB] === squares.value[squareC]
     ) {
-      winner.value = squares.value[squareA]; 
+      winner.value = currentPlayer === "X" ? playerO : playerX;
       return;
     }
   }
@@ -107,6 +110,10 @@ const resetGame = () => {
 .disabled {
   pointer-events: none;
   background-color: #371a3a;
+}
+
+p {
+  font-size: 2rem;
 }
 
 @media (max-width: 600px) {
