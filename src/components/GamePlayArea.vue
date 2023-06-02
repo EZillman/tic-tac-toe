@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import NewGame from "./NewGame.vue";
 
 const squares = ref(Array(9).fill(""));
 let currentPlayer = "X";
@@ -50,6 +51,13 @@ const checkForTie = () => {
   }
 };
 
+
+const resetGame = () => {
+    squares.value = Array(9).fill("");
+    winner.value = "";
+    isTie = false;
+};
+
 </script>
 
 <template>
@@ -63,6 +71,9 @@ const checkForTie = () => {
             {{ value }}
         </div>
     </div>
+
+    <NewGame v-if="winner || isTie" @startNewGame="resetGame">
+    </NewGame>
 
   
 </template>
